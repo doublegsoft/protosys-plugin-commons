@@ -23,8 +23,8 @@ import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectRole;
-import com.doublegsoft.jcommons.metamodel.APIDefinition;
-import com.doublegsoft.jcommons.metamodel.ApplicationAPIDefinition;
+import com.doublegsoft.jcommons.metamodel.ApiDefinition;
+import com.doublegsoft.jcommons.metamodel.ApplicationApiDefinition;
 import com.doublegsoft.jcommons.metamodel.ApplicationDefinition;
 import com.doublegsoft.jcommons.metamodel.UsecaseDefinition;
 import com.doublegsoft.jcommons.metaui.PageDefinition;
@@ -147,7 +147,7 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
     this.application = app;
     for (int i = 1; i < misumls.length; i++) {
       ApplicationDefinition otherApp = convertToApplication(misumls[i], model);
-      for (ApplicationAPIDefinition apiApp : otherApp.getAPI()) {
+      for (ApplicationApiDefinition apiApp : otherApp.getAPI()) {
         app.addAPI(apiApp);
       }
       for (UsecaseDefinition usecase : otherApp.getUsecases()) {
@@ -622,9 +622,9 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
             }
           }
           templateData.put("pages", pages);
-          List<APIDefinition> APIs = new ArrayList<>();
-          for (ApplicationAPIDefinition appAPI : app.getAPI()) {
-            for (APIDefinition API : appAPI.getAPIs()) {
+          List<ApiDefinition> APIs = new ArrayList<>();
+          for (ApplicationApiDefinition appAPI : app.getAPI()) {
+            for (ApiDefinition API : appAPI.getAPIs()) {
               if (module.equalsIgnoreCase(API.getModule())) {
                 if (APIType == null) {
                   APIs.add(API);
@@ -1325,8 +1325,8 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
           return false;
         }
       }
-    } else if (definition instanceof APIDefinition) {
-      APIDefinition API = (APIDefinition) definition;
+    } else if (definition instanceof ApiDefinition) {
+      ApiDefinition API = (ApiDefinition) definition;
       if (filters.containsKey("module")) {
         retVal = API.getModule().equals(filters.get("module"));
         if (!retVal) {
