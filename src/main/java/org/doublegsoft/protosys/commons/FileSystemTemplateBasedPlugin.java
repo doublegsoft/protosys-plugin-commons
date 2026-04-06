@@ -69,6 +69,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import io.doublegsoft.modelbase.Modelbase;
+import io.doublegsoft.typebase.EnumValue;
 import io.doublegsoft.typebase.Typebase;
 import org.doublegsoft.protosys.plugin.Plugin;
 import org.doublegsoft.protosys.reader.MetaReader;
@@ -1226,12 +1227,12 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
     opts = opts == null ? widget.getOption("options") : opts;
     if (opts != null) {
       if (opts.indexOf("[") == 0) {
-        List<StringPair> pairs = TYPEBASE.enumtype("enum" + opts);
+        List<EnumValue> pairs = TYPEBASE.enumtype("enum" + opts);
         List<Option> options = new ArrayList<>();
         pairs.forEach(pair -> {
           Option opt = new Option();
-          opt.setValue(pair.getKey());
-          opt.setText(pair.getValue());
+          opt.setValue(pair.getCode());
+          opt.setText(pair.getName());
           options.add(opt);
         });
         retVal.set("options", options);
@@ -1251,11 +1252,11 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
         int index = opts.indexOf("[");
         String itemsString = opts.substring(0, index);
         String enumString = opts.substring(index);
-        List<StringPair> pairs = TYPEBASE.enumtype("enum" + enumString);
-        StringPair pair = pairs.get(0);
+        List<EnumValue> pairs = TYPEBASE.enumtype("enum" + enumString);
+        EnumValue pair = pairs.get(0);
         HashObject optsModel = new HashObject();
-        optsModel.set("text", pair.getValue());
-        optsModel.set("value", pair.getKey());
+        optsModel.set("text", pair.getName());
+        optsModel.set("value", pair.getCode());
 
         String items = itemsString.substring(0, itemsString.indexOf("("));
         String item = itemsString.substring(itemsString.indexOf("(") + 1, itemsString.indexOf(")"));

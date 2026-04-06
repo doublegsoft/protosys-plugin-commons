@@ -113,7 +113,6 @@
     <dependency>
       <groupId>io.doublegsoft.typebase</groupId>
       <artifactId>typebase</artifactId>
-      <version>4.0</version>
     </dependency>
     <dependency>
       <groupId>com.doublegsoft.jcommons</groupId>
