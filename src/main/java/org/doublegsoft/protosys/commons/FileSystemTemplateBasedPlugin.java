@@ -238,6 +238,8 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
       File file = new File(path);
       if (file.exists() && !file.isDirectory()) {
         dsl.append(new String(Files.readAllBytes(file.toPath()), "UTF-8")).linefeed();
+      } else {
+        throw new IllegalArgumentException("cannot access the modelbase file path: " + path);
       }
     }
     if (dsl.toString().trim().isEmpty()) {
