@@ -18,7 +18,6 @@ package org.doublegsoft.protosys.commons;
 import com.doublegsoft.jcommons.lang.HashObject;
 import com.doublegsoft.jcommons.lang.Option;
 import com.doublegsoft.jcommons.lang.StringHolder;
-import com.doublegsoft.jcommons.lang.StringPair;
 import com.doublegsoft.jcommons.metabean.AttributeDefinition;
 import com.doublegsoft.jcommons.metabean.ModelDefinition;
 import com.doublegsoft.jcommons.metabean.ObjectDefinition;
@@ -32,10 +31,8 @@ import com.doublegsoft.jcommons.metaui.WidgetDefinition;
 import com.doublegsoft.jcommons.metaui.layout.Position;
 import com.doublegsoft.jcommons.metaui.layout.Size;
 import com.doublegsoft.jcommons.programming.NamingConvention;
-import com.doublegsoft.jcommons.programming.NamingConventions;
 import com.doublegsoft.jcommons.programming.c.CConventions;
 import com.doublegsoft.jcommons.programming.cpp.CppConventions;
-import com.doublegsoft.jcommons.programming.cpp.CppNamingConvention;
 import com.doublegsoft.jcommons.programming.csharp.CSharpConventions;
 import com.doublegsoft.jcommons.programming.csharp.CSharpNamingConvention;
 import com.doublegsoft.jcommons.programming.dart.DartConventions;
@@ -59,9 +56,7 @@ import com.doublegsoft.jcommons.programming.swift.SwiftNamingConvention;
 import com.doublegsoft.jcommons.programming.typescript.TypeScriptConventions;
 import com.doublegsoft.jcommons.programming.typescript.TypeScriptNamingConvention;
 import com.doublegsoft.jcommons.programming.xml.XMLConventions;
-import com.doublegsoft.jcommons.programming.xml.XMLNamingConvention;
 import com.doublegsoft.jcommons.utils.Strings;
-import com.doublegsoft.misuml.MisumlContext;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.cache.MultiTemplateLoader;
 import freemarker.cache.TemplateLoader;
@@ -136,7 +131,7 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
   protected transient ApplicationDefinition application = null;
 
   @Override
-  public void prototype(MisumlContext[] misumls, ModelDefinition model, String outputRoot, String templateRoot, HashObject globals) throws IOException {
+  public void prototype(ModelDefinition model, String outputRoot, String templateRoot, HashObject globals) throws IOException {
     FileTemplateLoader specific = new FileTemplateLoader(new File(templateRoot));
     FileTemplateLoader common = new FileTemplateLoader(new File(templateRoot + "/.."));
     MultiTemplateLoader templateLoader = new MultiTemplateLoader(new TemplateLoader[]{common, specific});
@@ -144,17 +139,8 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
 
     decorate(model, globals);
 
-    ApplicationDefinition app = convertToApplication(misumls[0], model);
+    ApplicationDefinition app = convertToApplication(model);
     this.application = app;
-    for (int i = 1; i < misumls.length; i++) {
-      ApplicationDefinition otherApp = convertToApplication(misumls[i], model);
-      for (ApplicationApiDefinition apiApp : otherApp.getAPI()) {
-        app.addAPI(apiApp);
-      }
-      for (UsecaseDefinition usecase : otherApp.getUsecases()) {
-        app.addUsecase(usecase);
-      }
-    }
 
     decorate(app, globals);
 
@@ -246,21 +232,6 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
       return new ModelDefinition();
     }
     return modelbase.parse(dsl.toString());
-  }
-
-  /**
-   * Creates the {@link MisumlContext} objects from misuml files using misuml framework.
-   *
-   * @param misumls the misuml files
-   * @return the misuml contexts
-   * @throws IOException in case of IO errors
-   */
-  public MisumlContext[] createMisumlContexts(String... misumls) throws IOException {
-    List<MisumlContext> retVal = new ArrayList<>();
-    for (String misuml : misumls) {
-      retVal.add(MisumlContext.from(new FileInputStream(misuml)));
-    }
-    return retVal.toArray(new MisumlContext[retVal.size()]);
   }
 
   /**

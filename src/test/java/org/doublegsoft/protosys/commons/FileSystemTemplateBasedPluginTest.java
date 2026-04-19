@@ -41,7 +41,7 @@ public class FileSystemTemplateBasedPluginTest {
 
     FileSystemTemplateBasedPlugin plugin = new FileSystemTemplateBasedPlugin();
     plugin.prototype(
-        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-server.misuml"}),
+//        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-server.misuml"}),
         plugin.createModelFromMetadata(new String[]{outputRoot + "/../../02.Designing/growing-sqlite3.xlsx"}),
         outputRoot, templateRoot, new HashObject());
   }
@@ -53,7 +53,7 @@ public class FileSystemTemplateBasedPluginTest {
 
     FileSystemTemplateBasedPlugin plugin = new FileSystemTemplateBasedPlugin();
     plugin.prototype(
-        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-server.misuml"}),
+//        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-server.misuml"}),
         plugin.createModelFromMetadata(new String[]{outputRoot + "/../../02.Designing/growing-sqlite3.xlsx"}),
         outputRoot, templateRoot, new HashObject());
   }
@@ -67,7 +67,7 @@ public class FileSystemTemplateBasedPluginTest {
     globals.put("namespace", "me.doublegsoft");
     FileSystemTemplateBasedPlugin plugin = new FileSystemTemplateBasedPlugin();
     plugin.prototype(
-        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-mobile.misuml"}),
+//        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-mobile.misuml"}),
         plugin.createModelFromMetadata(new String[]{outputRoot + "/../../02.Designing/growing-sqlite3.xlsx"}),
         outputRoot, templateRoot, globals);
   }
@@ -79,7 +79,7 @@ public class FileSystemTemplateBasedPluginTest {
 
     FileSystemTemplateBasedPlugin plugin = new FileSystemTemplateBasedPlugin();
     plugin.prototype(
-        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-mobile.misuml"}),
+//        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-mobile.misuml"}),
         plugin.createModelFromMetadata(new String[]{outputRoot + "/../../02.Designing/growing-sqlite3.xlsx"}),
         outputRoot, templateRoot, new HashObject());
   }
@@ -91,7 +91,7 @@ public class FileSystemTemplateBasedPluginTest {
 
     FileSystemTemplateBasedPlugin plugin = new FileSystemTemplateBasedPlugin();
     plugin.prototype(
-        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-mobile.misuml"}),
+//        plugin.createMisumlContexts(new String[]{outputRoot + "/../../02.Designing/growing-mobile.misuml"}),
         plugin.createModelFromMetadata(new String[]{outputRoot + "/../../02.Designing/growing-sqlite3.xlsx"}),
         outputRoot, templateRoot, new HashObject());
   }

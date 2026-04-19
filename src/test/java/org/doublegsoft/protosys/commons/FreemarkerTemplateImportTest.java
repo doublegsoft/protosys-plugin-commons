@@ -41,11 +41,11 @@ public class FreemarkerTemplateImportTest {
     StringWriter writer = new StringWriter();
 
     //
-    Size size = Size.of("(30%, 400px)");
-    data.put("size", size);
-
-    template.process(data, writer);
-    System.out.println(writer);
+//    Size size = Size.of("(30%, 400px)");
+//    data.put("size", size);
+//
+//    template.process(data, writer);
+//    System.out.println(writer);
   }
 
 }

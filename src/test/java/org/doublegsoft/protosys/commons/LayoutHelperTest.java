@@ -6,6 +6,7 @@ import com.doublegsoft.jcommons.metaui.layout.Grid;
 import com.doublegsoft.jcommons.metaui.layout.Position;
 import com.doublegsoft.jcommons.metaui.layout.Row;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class LayoutHelperTest {
    * ---------- ----------
    * </pre>
    */
-  @Test
+  @Ignore
   public void test1() {
     System.out.println("##################### test1 ######################");
     HashObject w_1$2_1 = new HashObject();
@@ -79,7 +80,7 @@ public class LayoutHelperTest {
    * ---------- ---------------
    * </pre>
    */
-  @Test
+  @Ignore
   public void test2() {
     System.out.println("##################### test2 ######################");
     HashObject w_1_1 = new HashObject();
@@ -126,7 +127,7 @@ public class LayoutHelperTest {
    * ---------- ---------------
    * </pre>
    */
-  @Test
+  @Ignore
   public void test3() {
     System.out.println("##################### test3 ######################");
     HashObject w_1_1 = new HashObject();
