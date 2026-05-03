@@ -113,7 +113,7 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
 
   public final static RustConventions RUST = new RustConventions();
 
-  public final static Configuration FREEMARKER = new Configuration(Configuration.getVersion());
+  public final static Configuration FREEMARKER = new Configuration(Configuration.VERSION_2_3_34);
 
   public final static Typebase TYPEBASE = new Typebase();
 
