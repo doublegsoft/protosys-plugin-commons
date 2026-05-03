@@ -34,7 +34,7 @@ public class FreemarkerTemplateImportTest {
 
   @Test
   public void test() throws Exception {
-    Configuration freemarker = new Configuration(Configuration.getVersion());
+    Configuration freemarker = new Configuration(Configuration.VERSION_2_3_34);
     freemarker.setClassForTemplateLoading(FreemarkerTemplateImportTest.class, "/");
     Template template = freemarker.getTemplate("/test.ftl");
     Map<String, Object> data = new HashMap<>();
