@@ -660,6 +660,7 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
           outputName = outputName.replace("$page$", naming.nameFile(pageName));
           templateData.put("page", toTemplateData(page));
           templateData.put("pagedef", page);
+          templateData.put("pageDef", page);
           templateData.putAll(toTemplateData(page));
           renderTo(outputRoot, newOutputPath, outputName, templatePath, templateFileName, templateData);
         }
