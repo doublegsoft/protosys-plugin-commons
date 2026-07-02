@@ -658,7 +658,7 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
 
           outputName = templateFileName.substring(0, templateFileName.lastIndexOf(".ftl"));
           outputName = outputName.replace("$page$", naming.nameFile(pageName));
-          templateData.put("page", toTemplateData(page));
+          templateData.put("page", page/*toTemplateData(page)*/);
           templateData.put("pagedef", page);
           templateData.put("pageDef", page);
           templateData.putAll(toTemplateData(page));
