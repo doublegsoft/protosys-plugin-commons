@@ -436,6 +436,7 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
           String language = (String)globalVariables.get("language");
           String namespace = "";
           // FIXME: 这里好像是个补丁
+          NamingConvention naming = (NamingConvention) globalVariables.get("globalNamingConvention");
           if ("csharp".equals(language)) {
             namespace = CSHARP.nameNamespace(app.getName());
           } else if (templateFileName.contains(".xcodeproj")) {
@@ -445,6 +446,8 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
             } else {
               namespace = OBJC.nameFile(app.getName());
             }
+          } else if (naming != null) {
+            namespace = naming.nameNamespace(app.getName());
           } else {
             namespace = JAVA.nameNamespace(app.getName());
           }
@@ -1148,14 +1151,15 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
     retVal.put("js", JAVASCRIPT);
     retVal.put("ts", TYPESCRIPT);
     retVal.put("swift", SWIFT);
-    retVal.put("typebase", TYPEBASE);
     retVal.put("groovy", GROOVY);
     retVal.put("objc", OBJC);
     retVal.put("objectivec", OBJC);
     retVal.put("pascal", PASCAL);
     retVal.put("rust", RUST);
     retVal.put("dart", DART);
+    retVal.put("swift", new SwiftConventions());
 
+    retVal.put("typebase", TYPEBASE);
 
     retVal.put("layout", LAYOUT);
     retVal.put("plugin", this);
