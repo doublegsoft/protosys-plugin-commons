@@ -381,13 +381,22 @@ public class FileSystemTemplateBasedPlugin implements Plugin {
             visitAndRender(outputRoot, fileOutputPath, templateRoot, templatePath + "/" + templateFileName, app, filters);
           }
         } else if (templateFileName.contains("$module$")) {
+          NamingConvention naming = (NamingConvention) globalVariables.get("globalNamingConvention");
           if (app.getModules().length > 0) {
             for (String module : app.getModules()) {
               String fileOutputPath;
               if (module.contains("/")) {
+                String[] strs = module.split("/");
+                String newModule = "";
+                for (String str : strs) {
+                  if (!newModule.equals("")) {
+                    newModule += "/";
+                  }
+                  newModule = naming.nameNamespace(str);
+                }
                 fileOutputPath = outputPath + "/" + templateFileName.replace("$module$", module);
               } else {
-                fileOutputPath = outputPath + "/" + templateFileName.replace("$module$", JAVA.nameNamespace(module));
+                fileOutputPath = outputPath + "/" + templateFileName.replace("$module$", naming.nameNamespace(module));
               }
               filters.put("module", module);
               visitAndRender(outputRoot, fileOutputPath, templateRoot, templatePath + "/" + templateFileName, app, filters);
